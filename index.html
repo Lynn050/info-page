@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>花蓮縣狗貓躍動園區｜資訊與活動分享</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", sans-serif;
+      background-color: #fdf8ee;
+      color: #3d352e;
+      margin: 0;
+      padding: 24px 16px 48px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 540px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 28px rgba(140, 105, 50, 0.1);
+      overflow: hidden;
+    }
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #f4d03f;
+    }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      scroll-snap-align: start;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.85);
+      color: #3d352e;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .dot.active {
+      background: #ffffff;
+      transform: scale(1.2);
+    }
+    .content {
+      padding: 28px 24px 32px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #856404;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 6px 0;
+      color: #2c2520;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #7a6f64;
+      margin: 0 0 18px 0;
+    }
+    .mission {
+      background-color: #faf6ef;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14.5px;
+      color: #5c4f42;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+    .link-btn {
+      display: block;
+      padding: 14px 18px;
+      background-color: #4a6b5d;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .link-btn.highlight {
+      background-color: #f5b027;
+      color: #2c2214;
+    }
+    .info-box {
+      background-color: #f9f9f9;
+      border: 1px solid #eeeeee;
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 14px;
+      color: #4a4a4a;
+      line-height: 1.85;
+    }
+    .info-box h2 {
+      font-size: 16px;
+      margin: 0 0 10px 0;
+      color: #2c2520;
+      border-bottom: 2px solid #f5b027;
+      display: inline-block;
+    }
+    .info-item { margin: 4px 0; }
+    .info-item a { color: #2b5876; text-decoration: none; font-weight: 600; }
+    .notice {
+      margin-top: 22px;
+      font-size: 12.5px;
+      color: #888888;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="carousel">
+      <div class="carousel-track" id="track">
+        <div class="carousel-slide"><img src="banner1.jpg" alt="活動宣傳圖"></div>
+        <div class="carousel-slide"><img src="banner2.jpg" alt="園區外觀"></div>
+      </div>
+      <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+      <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+      <div class="carousel-dots" id="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="badge">🐶 認養預約制 🐱</div>
+      <h1>花蓮縣狗貓躍動園區</h1>
+      <p class="subtitle">公立動物收容所</p>
+      <div class="mission">🐾 我們致力於幫助狗貓進入家庭，<br>祈望幸福的家變得更完整</div>
+      <div class="link-list">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScDUwe_KKff9xDp0VpyL3lVlBUxoFDjwiNsRzKmaHvpmGsA8g/viewform?pli=1" target="_blank" class="link-btn highlight">🐶 汪汪！躍去你家住一晚－活動報名表</a>
+        <a href="https://www.facebook.com/dog.cat.leaping.park" target="_blank" class="link-btn">📘 躍動園區 FB 粉絲專頁</a>
+        <a href="https://www.instagram.com/dog_cat_leaping_park/" target="_blank" class="link-btn">📸 躍動園區 Instagram 官方帳號</a>
+        <a href="https://animal.moa.gov.tw/Frontend/PublicShelter/Detail/PS00000020" target="_blank" class="link-btn">🏥 全國動物收容管理系統（園區資訊）</a>
+      </div>
+      <div class="info-box">
+        <h2>園區聯絡與預約資訊</h2>
+        <div class="info-item">📞 <strong>歡迎來電預約：</strong><a href="tel:038421452">03-8421452</a></div>
+        <div class="info-item">📍 <strong>園區地址：</strong>花蓮縣鳳林鎮林榮里永豐路255號</div>
+        <div class="info-item">🔍 <strong>地圖／社群搜尋：</strong>花蓮縣狗貓躍動園區</div>
+      </div>
+      <p class="notice">【此處僅分享相關訊息，園區及活動資訊仍以 FB 粉絲專頁公告為主】</p>
+    </div>
+  </div>
+  <script>
+    const track = document.getElementById('track');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = dots.length;
+    let currentIndex = 0;
+    function updateDots(index) {
+      dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
+    }
+    function moveSlide(direction) {
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      track.scrollTo({ left: track.clientWidth * currentIndex, behavior: 'smooth' });
+      updateDots(currentIndex);
+    }
+    track.addEventListener('scroll', () => {
+      const index = Math.round(track.scrollLeft / track.clientWidth);
+      if (index !== currentIndex && index < totalSlides) {
+        currentIndex = index;
+        updateDots(currentIndex);
+      }
+    });
+    setInterval(() => { moveSlide(1); }, 4500);
+  </script>
+</body>
+</html>
